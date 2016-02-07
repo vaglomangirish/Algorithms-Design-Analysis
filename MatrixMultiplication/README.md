@@ -1,6 +1,6 @@
-Requirements: Python 2.7 installed.
+<b>Requirements</b>: Python 2.7 installed.
 
-How to run the program:-
+#How to run the program:-
 $python MatrixMultiplication.py \<MAXSIZE\>  
 
 For Example:-  
@@ -40,7 +40,7 @@ Time for strassens: 5991.11263752 milliseconds
 
 Also find the product_times.csv generated once the program is executed.  
 
-How to view the graph:-  
+#How to view the graph:-  
 
 Start a Simple HTTP Server in python in the project directory:-  
 $python -m SimpleHTTPServer 8000  
