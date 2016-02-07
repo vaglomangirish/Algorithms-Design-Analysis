@@ -1,10 +1,10 @@
 Requirements: Python 2.7 installed.
 
 How to run the program:-
-python MatrixMultiplication.py \<MAXSIZE\>  
+$python MatrixMultiplication.py \<MAXSIZE\>  
 
 For Example:-  
-python MatrixMultiplication.py 128  
+$python MatrixMultiplication.py 128  
 For Matrix Size: 1  
 Time for standard: 0.00395774841309 milliseconds  
 Time for standard recursive: 0.00262260437012 milliseconds  
@@ -43,8 +43,8 @@ Also find the product_times.csv generated once the program is executed.
 How to view the graph:-  
 
 Start a Simple HTTP Server in python in the project directory:-  
-python -m SimpleHTTPServer 8000  
+$python -m SimpleHTTPServer 8000  
   
 Run linechart.html in browser which would be hosted on the HTTP Server:-  
-google-chrome http://localhost:8000/linechart.html  
+$google-chrome http://localhost:8000/linechart.html  
 
