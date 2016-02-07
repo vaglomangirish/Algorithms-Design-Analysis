@@ -6,7 +6,18 @@ import math
 
 __author__ = "Mangirish_Wagle"
 
+"""
+This Python program can be run as:-
+
+# python MatrixMultiplication <MAXSIZE>
+
+The output would be a 'product_times.csv' with matrix multiplication times of Standard Iterative, Standard Recursive
+and Strassens methods, for square matrix sizes which are power of 2, ranging from 1, 2, .... , MAXSIZE.
+
+"""
+
 sys.setrecursionlimit(500000)
+
 
 class MatrixMultiplication:
     """
@@ -20,6 +31,14 @@ class MatrixMultiplication:
     def generate_random_matrix(cls, dim):
         """
         Function to generate a random square dim * dim matrix.
+
+        Data Structure used for Matrix is List of Lists in python:-
+
+        list  of lists:- [ [ 1, 2 ], [ 3, 4 ] ] represents:-
+
+        [ 1, 2 ]
+        [ 3. 4 ]
+
         :param dim: size of row/ column
         :return: dim * dim matrix of floating point elements.
         """
@@ -59,7 +78,7 @@ class MatrixMultiplication:
 
         for i in range(len(matrix1)):
             submat1, submat2 = matrix1[i], matrix2[i]
-            result.append([(x+y) for x,y in zip(submat1, submat2)])
+            result.append([(x+y) for x, y in zip(submat1, submat2)])
 
         return result
 
@@ -76,7 +95,7 @@ class MatrixMultiplication:
 
         for i in range(len(matrix1)):
             submat1, submat2 = matrix1[i], matrix2[i]
-            result.append([(x-y) for x,y in zip(submat1, submat2)])
+            result.append([(x-y) for x, y in zip(submat1, submat2)])
 
         return result
 
@@ -136,6 +155,7 @@ class MatrixMultiplication:
         """
 
         result = []
+        # Base condition: If matrix contains just 1 element, return the result with simple multiplication.
         if len(matrix1) == 1 and len(matrix2) == 1:
             submat = list()
             submat.append(matrix1[0][0] * matrix2[0][0])
@@ -146,6 +166,7 @@ class MatrixMultiplication:
             a11, a12, a21, a22 = cls.divide_matrix(matrix1)
             b11, b12, b21, b22 = cls.divide_matrix(matrix2)
 
+            # Initializing four quadrant matrices of the result matrix
             c11 = []
             c12 = []
             c21 = []
@@ -162,7 +183,6 @@ class MatrixMultiplication:
 
         return result
 
-
     @classmethod
     def strassens_multiply(cls, matrix1, matrix2):
         """
@@ -173,16 +193,17 @@ class MatrixMultiplication:
         """
 
         result = []
+        # Base condition: If matrix contains just 1 element, return the result with simple multiplication.
         if len(matrix1) == 1 and len(matrix2) == 1:
             submat = list()
             submat.append(matrix1[0][0] * matrix2[0][0])
             result.append(submat)
         else:
-            #Divide
+            # Divide
             a11, a12, a21, a22 = cls.divide_matrix(matrix1)
             b11, b12, b21, b22 = cls.divide_matrix(matrix2)
 
-            #Conquer
+            # Conquer
             # (A11 + A22)*(B11 + B22)
             m1 = cls.strassens_multiply(cls.add(a11, a22), cls.add(b11, b22))
 
@@ -210,7 +231,7 @@ class MatrixMultiplication:
             c21 = cls.add(m2, m4)
             c22 = cls.add(cls.add(m1, m6), cls.subtract(m3, m2))
 
-            #Combine
+            # Combine
             result = cls.combine_matrices(c11, c12, c21, c22)
 
         return result
@@ -257,7 +278,7 @@ if __name__ == '__main__':
 
     # Preparing to write the results to a csv file.
     f = open("product_times.csv", "w")
-    f.write("Size,Std_Itr,Std_Rec,Strassens\n")
+    f.write("Size,Standard_Iterative,Standard_Recursive,Strassens\n")
 
     for x in xrange(int(args.MAXSIZE)):
         matsize = int(math.pow(2, x))
@@ -301,11 +322,18 @@ if __name__ == '__main__':
 
             str_time = (strsum*1000.0)/float(sampling_count)
 
-            # print("Result by standard multiplication:-")
-            # matmul.print_matrix(resultstd)
+            # INFO: Uncomment the following lines to view the matrix output results.
+            # These have been kept commented so that the output is clean and readable with just the content necessary.
+            """
+            print("Result by standard multiplication:-")
+            matmul.print_matrix(resultstd)
 
-            # print("Result by strassen multiplication:-")
-            # matmul.print_matrix(resultstrass)
+            print("Result by standard recursive multiplication:-")
+            matmul.print_matrix(resultstdrec)
+
+            print("Result by strassen multiplication:-")
+            matmul.print_matrix(resultstrass)
+            """
 
             # Results added to csv file.
             f.write("{},{},{},{}\n".format(matsize, std_time, std_rec_time, str_time))
